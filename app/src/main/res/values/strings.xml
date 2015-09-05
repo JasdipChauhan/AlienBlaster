@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Alien Blaster</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_sign_in">SignInActivity</string>
+    <string name="title_activity_login_signup">LoginSignupActivity</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="title_activity_welcome">Welcome</string>
+    <string name="banner_ad_unit_id">ca-app-pub-5012706603951387/9656075755</string>
+    <string name="title_activity_signup">SignupActivity</string>
+    <string name="title_activity_start_game">startGameActivity</string>
+</resources>

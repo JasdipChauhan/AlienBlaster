@@ -1,0 +1,64 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp"
+    tools:context="com.jscboy.alienblaster.LoginSignupActivity"
+    android:background="#1e1e1e">
+
+    <TextView
+        android:text=""
+        android:id="@+id/txtUser"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <EditText
+        android:id="@+id/username"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txtUser"
+        android:inputType="text"
+        android:textColor="#7d7d7d"
+        android:drawableLeft="@drawable/usericon"
+        android:hint=" Username"
+        android:textColorHint="#7d7d7d"
+        />
+
+    <TextView
+        android:text=""
+        android:id="@+id/txtPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/username" />
+
+    <EditText
+        android:id="@+id/password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txtPassword"
+        android:inputType="textPassword"
+        android:drawableLeft="@drawable/passicon"
+        android:hint=" Password"
+        android:textColor="#7d7d7d"
+        android:textColorHint="#7d7d7d" />
+    
+    <Button
+        android:id="@+id/login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/password"
+        android:text="Sign In"
+        android:onClick="loginMethod"
+        android:background="#339f92"
+        android:textColor="#ffffff" />
+
+    <Button
+        android:id="@+id/signup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/login"
+        android:text="Sign Up"
+        android:onClick="signupMethod"
+        android:background="#339f92"
+        android:textColor="#ffffff"
+        android:layout_marginTop="20dp" />
+</RelativeLayout>
