@@ -14,6 +14,8 @@ import com.google.android.gms.ads.*;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.InterstitialAd;
+import com.parse.LogOutCallback;
+import com.parse.ParseException;
 import com.parse.ParseUser;
 import com.facebook.ads.*;
 
@@ -35,7 +37,7 @@ public class Welcome extends Activity {
         setContentView(R.layout.activity_welcome);
 
         ParseUser currentUser = ParseUser.getCurrentUser();
-        String strUser = currentUser.getUsername().toString();
+        String strUser = currentUser.getUsername();
 
         TextView beforeTxtUser = (TextView) findViewById(R.id.beforeTxtUser);
         TextView afterTxtUser = (TextView) findViewById(R.id.afterTxtUser);
@@ -104,8 +106,18 @@ public class Welcome extends Activity {
 
 
     public void logoutMethod(View view) {
-        Intent i = new Intent(this, LoginSignupActivity.class);
-        startActivity(i);
+        finish();
+
+        ParseUser.logOutInBackground(new LogOutCallback() {
+            @Override
+            public void done(ParseException e) {
+                Intent i = new Intent(Welcome.this, LoginSignupActivity.class);
+                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(i);
+            }
+        });
+
     }
 
     public void exitMethod(View view) {
@@ -117,4 +129,8 @@ public class Welcome extends Activity {
             setContentView(new GamePanel(this));
     }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+    }
 }

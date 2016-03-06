@@ -19,6 +19,7 @@ import java.util.Random;
 
 public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
 
+    private Context context;
     public static final int WIDTH = 400;
     public static final int HEIGHT = 800;
     private MainThread thread;
@@ -42,6 +43,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
     public GamePanel(Context context) {
 
         super(context);
+        this.context = context;
 
         //adding the panel to handle events
         getHolder().addCallback(this);
@@ -79,9 +81,9 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
 
         player = new Player(BitmapFactory.decodeResource(getResources(),
                 R.drawable.spaceship_sprite), 39, 44, 3);
-        tracings = new ArrayList<ShipTracing>();
-        enemies = new ArrayList<Enemy>();
-        laserShots = new ArrayList<Shot>();
+        tracings = new ArrayList<>();
+        enemies = new ArrayList<>();
+        laserShots = new ArrayList<>();
 
         tracingStartTime = System.nanoTime();
         enemyStartTime = System.nanoTime();
@@ -99,7 +101,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         if (event.getAction() == MotionEvent.ACTION_DOWN ) {
-            if (player.getPlaying() == false) {
+            if (!player.getPlaying()) {
                 player.setPlaying(true);
             }
             if (player.getRight()) {
@@ -186,6 +188,8 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
         } else {
             Intent i = new Intent(GamePanel.this.getContext(), Welcome.class); //switched from game
             i.putExtra("playerScore", player.getScore());
+            i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             getContext().startActivity(i);
         }
     }
@@ -194,9 +198,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
         if (Rect.intersects(a.getRectangle(), b.getRectangle())) {
             return true;
         }
-        else {
-            return false;
-        }
+        return false;
     }
 
     public boolean collision(GameObject a, Borders b) {

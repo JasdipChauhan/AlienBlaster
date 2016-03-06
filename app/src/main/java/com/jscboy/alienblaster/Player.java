@@ -5,7 +5,7 @@ import android.graphics.Canvas;
 
 public class Player extends GameObject {
     private Bitmap spritesheet;
-    public static int score;
+    public int score;
     private boolean right;
     private boolean playing = true;
     private Animation animation = new Animation();
