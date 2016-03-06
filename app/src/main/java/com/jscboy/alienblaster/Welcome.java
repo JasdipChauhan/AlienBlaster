@@ -104,30 +104,34 @@ public class Welcome extends Activity {
 
 
     public void logoutMethod(View view) {
-        finish();
+        ProgressDialog progressDialog = new ProgressDialog(Welcome.this);
+        progressDialog.setTitle("Logging out");
+        progressDialog.setMessage("Please wait");
+        progressDialog.setCancelable(false);
+        progressDialog.show();
+
         ParseUser.logOutInBackground(new LogOutCallback() {
             @Override
             public void done(ParseException e) {
                 Intent i = new Intent(Welcome.this, LoginSignupActivity.class);
                 i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                i.putExtra("logged out", true);
+                Welcome.this.finish();
                 startActivity(i);
             }
         });
 
+        progressDialog.dismiss();
     }
 
     public void exitMethod(View view) {
+        logoutMethod(view);
         System.exit(0);
     }
 
     public void playgameMethod(View view) {
-            setTitle("They're coming for you!");
-            setContentView(new GamePanel(this));
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
+        setTitle("They're coming for you!");
+        setContentView(new GamePanel(this));
     }
 }

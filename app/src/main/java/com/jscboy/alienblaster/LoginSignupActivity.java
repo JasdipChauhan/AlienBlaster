@@ -2,7 +2,9 @@ package com.jscboy.alienblaster;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -13,7 +15,7 @@ import com.parse.ParseException;
 import com.parse.ParseUser;
 
 
-public class LoginSignupActivity extends ActionBarActivity {
+public class LoginSignupActivity extends AppCompatActivity {
 
     Button loginButton;
     Button logoutButton;
@@ -33,6 +35,16 @@ public class LoginSignupActivity extends ActionBarActivity {
 
         loginButton = (Button) findViewById(R.id.login);
         logoutButton = (Button) findViewById(R.id.logout);
+
+        try {
+            Bundle intent = getIntent().getExtras();
+            boolean showSnack = intent.getBoolean("logged out");
+            if (showSnack) {
+                Snackbar.make(this.findViewById(android.R.id.content), "Log out sucessful!", Snackbar.LENGTH_LONG).show();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void loginMethod(View v) {
