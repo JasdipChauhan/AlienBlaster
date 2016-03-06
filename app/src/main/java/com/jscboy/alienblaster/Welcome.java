@@ -1,6 +1,7 @@
 package com.jscboy.alienblaster;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -71,9 +72,7 @@ public class Welcome extends Activity {
         /////////////////////////
 
         Bundle playersData = getIntent().getExtras();
-        if (playersData == null) {
-            return;
-        } else {
+        if (playersData != null) {
             playerScoreNum = playersData.getInt("playerScore");
             playerScoreStr = Integer.toString(playerScoreNum);
             playersScoreTV.setTextColor(Color.RED);
@@ -100,14 +99,12 @@ public class Welcome extends Activity {
     public int loadScore(Context context){
         SharedPreferences sharedPreferences = context.getSharedPreferences
                 ("com.jscboy.alienblaster", Context.MODE_PRIVATE);
-        int score = sharedPreferences.getInt("SCORE", 0);
-        return score;
+        return sharedPreferences.getInt("SCORE", 0);
     }
 
 
     public void logoutMethod(View view) {
         finish();
-
         ParseUser.logOutInBackground(new LogOutCallback() {
             @Override
             public void done(ParseException e) {

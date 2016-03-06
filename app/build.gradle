@@ -1,13 +1,13 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 22
+    compileSdkVersion 23
     buildToolsVersion "22.0.1"
 
     defaultConfig {
         applicationId "com.jscboy.alienblaster"
-        minSdkVersion 9
-        targetSdkVersion 22
+        minSdkVersion 21
+        targetSdkVersion 23
         versionCode 8
         versionName "2.1"
     }
@@ -21,10 +21,11 @@ android {
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
-    compile 'com.android.support:appcompat-v7:22.2.0'
+    compile 'com.android.support:appcompat-v7:23.+'
     compile 'com.parse.bolts:bolts-android:1.+'
     compile fileTree(include: 'Parse-1.9.4.jar', dir: 'libs')
-    compile 'com.google.android.gms:play-services:7.5.0'
+    compile 'com.google.android.gms:play-services:7.5.+'
     compile files('libs/AudienceNetwork.jar')
+    compile 'com.android.support:design:23.+'
 }
 
