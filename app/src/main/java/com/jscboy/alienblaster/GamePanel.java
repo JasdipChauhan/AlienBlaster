@@ -195,18 +195,12 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
     }
 
     public boolean collision(GameObject a, GameObject b) {
-        if (Rect.intersects(a.getRectangle(), b.getRectangle())) {
-            return true;
-        }
-        return false;
+        return Rect.intersects(a.getRectangle(), b.getRectangle());
     }
 
     public boolean collision(GameObject a, Borders b) {
-        if ((Rect.intersects(a.getRectangle(), b.getLeftBound())) ||
-                (Rect.intersects(a.getRectangle(), b.getRightBound()))) {
-            return true;
-        }
-        return false;
+        return (Rect.intersects(a.getRectangle(), b.getLeftBound())) ||
+                (Rect.intersects(a.getRectangle(), b.getRightBound()));
     }
 
     public void draw (Canvas canvas) {
