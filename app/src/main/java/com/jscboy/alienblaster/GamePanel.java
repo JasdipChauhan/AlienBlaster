@@ -206,9 +206,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
                 (Rect.intersects(a.getRectangle(), b.getRightBound()))) {
             return true;
         }
-        else {
-            return false;
-        }
+        return false;
     }
 
     public void draw (Canvas canvas) {
